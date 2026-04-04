@@ -10,6 +10,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import TransparentPricing from "./Components/TransparentPricing/TransparentPricing";
 import WorkFlow from "./Components/WorkFlow/WorkFlow";
 import Products from "./Components/Products/Products";
+import { ToastContainer } from "react-toastify";
 
 const fetchCard = async () => {
   const res = await fetch("/data1.json");
@@ -30,6 +31,7 @@ function App() {
       <TransparentPricing />
       <WorkFlow />
       <Footer />
+      <ToastContainer/>
     </>
   );
 }

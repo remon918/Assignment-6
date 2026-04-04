@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 
-const Card = ({ card }) => {
+
+const Card = ({ card, cartProducts, setCartProducts }) => {
+  // console.log(cartProducts, setCartProducts)
+  const [isAdded, setIsAdded] = useState(false);
+  const addButtonHandle =() =>{
+    if(isAdded === false){
+      toast('Wow so easy !');
+      setCartProducts([...cartProducts, card])
+    }
+    else{
+      return;
+    }
+  }
   return (
-    <div className="Card">
-      
-      <div className="relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+    <div className="Card transition-all duration-300 hover:-translate-y-2">
+      <div className="relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100 ">
         <span className="absolute top-4 right-4 bg-amber-400 text-amber-900 text-xs font-semibold px-3 py-1 rounded-full">
           {card.badge}
         </span>
@@ -40,8 +52,12 @@ const Card = ({ card }) => {
           </p>
         </div>
 
-        <button className="w-full bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold py-3 rounded-xl duration-300">
-          Buy Now
+        <button
+          onClick={() =>{ setIsAdded(true); addButtonHandle();}} 
+          
+          className={` ${isAdded === false ? "bg-purple-700 hover:bg-purple-600" : "bg-green-700 hover:bg-green-600"}  text-white text-sm font-semibold py-3 rounded-xl duration-300 w-full`}
+        >
+          {isAdded ? "Added To Cart" : "Buy Now" }
         </button>
       </div>
     </div>

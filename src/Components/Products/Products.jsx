@@ -8,7 +8,9 @@ const Products = ({ cardsPromise }) => {
   // console.log(cards);
 
   const [product, setProduct] = useState("productButtonClicked");
-  console.log(product, "product", setProduct);
+  // console.log(product, "product", setProduct);
+
+  const [cartProducts, setCartProducts] = useState([]);
 
   return (
     <div className="w-[80%] mx-auto">
@@ -34,15 +36,23 @@ const Products = ({ cardsPromise }) => {
               onClick={() => setProduct("cartButtonClicked")}
               className={`btn ${product === "cartButtonClicked" ? "bg-linear-to-r from-[#4F39F6] to-[#9514FA] text-white" : "text-gray-700 border-none bg-white"}  rounded-full  text-sm font-medium`}
             >
-              Cart (2)
+              Cart ({cartProducts.length}/{cards.length})
             </button>
           </div>
         </div>
       </div>
       {product === "productButtonClicked" ? (
-        <ProductCards cards={cards} />
+        <ProductCards
+          cards={cards}
+          setCartProducts={setCartProducts}
+          cartProducts={cartProducts}
+        />
       ) : (
-        <CartCards />
+        <CartCards
+          cards={cards}
+          setCartProducts={setCartProducts}
+          cartProducts={cartProducts}
+        />
       )}
     </div>
   );
