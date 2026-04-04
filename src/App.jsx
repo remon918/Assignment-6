@@ -22,10 +22,10 @@ function App() {
       <Navbar />
       <Banner />
       <Count />
+      <Products />
       <Suspense fallback={<span className="loading loading-ring loading-xl"></span>} >
         <Cards cardsPromise={cardsPromise} />
       </Suspense>
-      <Products />
       <GetStarted />
       <TransparentPricing />
       <WorkFlow />
