@@ -1,15 +1,28 @@
 import React from "react";
 import { IoCartOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
 
-const CartCards = ({ cards, cartProducts, setCartProducts, product, setProduct }) => {
+const CartCards = ({
+  cards,
+  cartProducts,
+  setCartProducts,
+  product,
+  setProduct,
+  price,
+  setPrice,
+}) => {
+  console.log(price, setPrice);
   // console.log(cartProducts, "cartProducts");
   const handleDeleteBtn = (card) => {
     // console.log(cartProducts, "cartProducts");
+
     const filteredCards = cartProducts.filter(
       (addedCard) => addedCard.title != card.title,
     );
     // console.log(filteredCards, "filteredCards");
     setCartProducts(filteredCards);
+    setPrice((prev) => prev - parseFloat(card.price.replace("$", "")));
+    toast.error(`${card.title} Removed from the Cart!`);
   };
   return (
     <div>
@@ -24,6 +37,14 @@ const CartCards = ({ cards, cartProducts, setCartProducts, product, setProduct }
             </div>
             <div className="text-gray-500">Browse Product</div>
           </div>
+          <div className="flex justify-center">
+            <button
+              onClick={() => setProduct("productButtonClicked")}
+              className={`btn ${product === "productButtonClicked" ? " text-white" : "text-white border-none bg-linear-to-r from-[#4F39F6] to-[#9514FA]"} w-[60%] mx-auto rounded-full  text-sm font-medium mb-10`}
+            >
+              Go To Products Section
+            </button>
+          </div>
         </div>
       ) : (
         <div className="">
@@ -34,8 +55,8 @@ const CartCards = ({ cards, cartProducts, setCartProducts, product, setProduct }
             return (
               <div key={ind}>
                 <div className="flex justify-between items-center bg-base-200 p-3 rounded-md mb-3">
-                  <div className="flex items-center gap-3">
-                    <img src={card.image_url} alt="" />
+                  <div className="flex items-center gap-5">
+                    <img className="h-6" src={card.image_url} />
                     <div>
                       <h3>{card.title}</h3>
                       <p>{card.price}</p>
@@ -54,9 +75,10 @@ const CartCards = ({ cards, cartProducts, setCartProducts, product, setProduct }
           <div className="">
             <div className="flex justify-between">
               <p>total</p>
-              <button className="mb-3">$</button>
+              <button className="mb-3"> {price} $</button>
             </div>
             <button
+              type="button"
               onClick={() => setProduct("productButtonClicked")}
               className={`btn ${product === "productButtonClicked" ? " text-white" : "text-white border-none bg-linear-to-r from-[#4F39F6] to-[#9514FA]"} w-full rounded-full  text-sm font-medium`}
             >

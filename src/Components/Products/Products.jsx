@@ -2,16 +2,19 @@ import React, { use, useState } from "react";
 import ProductCards from "./ProductCards";
 import CartCards from "./CartCards";
 
-
-const Products = ({ cardsPromise , setCartProducts, cartProducts}) => {
+const Products = ({
+  cardsPromise,
+  setCartProducts,
+  cartProducts,
+  price,
+  setPrice,
+}) => {
   // console.log(cardsPromise);
   const cards = use(cardsPromise);
   // console.log(cards);
 
   const [product, setProduct] = useState("productButtonClicked");
   // console.log(product, "product", setProduct);
-
-  
 
   return (
     <div className="w-[80%] mx-auto">
@@ -47,6 +50,8 @@ const Products = ({ cardsPromise , setCartProducts, cartProducts}) => {
           cards={cards}
           setCartProducts={setCartProducts}
           cartProducts={cartProducts}
+          price={price}
+          setPrice={setPrice}
         />
       ) : (
         <CartCards
@@ -55,9 +60,10 @@ const Products = ({ cardsPromise , setCartProducts, cartProducts}) => {
           cartProducts={cartProducts}
           product={product}
           setProduct={setProduct}
+          price={price}
+          setPrice={setPrice}
         />
       )}
-      
     </div>
   );
 };

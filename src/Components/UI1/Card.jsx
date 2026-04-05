@@ -1,19 +1,27 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
+const Card = ({ card, cartProducts, setCartProducts, price, setPrice }) => {
+  console.log(price);
 
-const Card = ({ card, cartProducts, setCartProducts }) => {
+  const handleBtn = () => {
+    
+    if (isAdded) return;
+    setIsAdded(true);
+    addButtonHandle();
+    setPrice(prev => prev + parseFloat(card.price.replace("$", "")));
+  };
+
   // console.log(cartProducts, setCartProducts)
   const [isAdded, setIsAdded] = useState(false);
-  const addButtonHandle =() =>{
-    if(isAdded === false){
-      toast('Wow so easy !');
-      setCartProducts([...cartProducts, card])
-    }
-    else{
+  const addButtonHandle = () => {
+    if (isAdded === false) {
+      toast(`~ ${card.title} Added to the Cart ~`);
+      setCartProducts([...cartProducts, card]);
+    } else {
       return;
     }
-  }
+  };
   return (
     <div className="Card transition-all duration-300 hover:-translate-y-2">
       <div className="relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100 ">
@@ -53,11 +61,10 @@ const Card = ({ card, cartProducts, setCartProducts }) => {
         </div>
 
         <button
-          onClick={() =>{ setIsAdded(true); addButtonHandle();}} 
-          
+          onClick={handleBtn}
           className={` ${isAdded === false ? "bg-purple-700 hover:bg-purple-600" : "bg-green-700 hover:bg-green-600"}  text-white text-sm font-semibold py-3 rounded-xl duration-300 w-full`}
         >
-          {isAdded ? "Added To Cart" : "Buy Now" }
+          {isAdded ? "Added To Cart" : "Buy Now"}
         </button>
       </div>
     </div>

@@ -42,7 +42,7 @@ const Navbar = ({cartProducts}) => {
           <button className="btn btn-ghost rounded-full px-4 hidden md:block ">
             Login
           </button>
-          <button className="btn bg-linear-to-r from-[#4F39F6] to-[#9514FA] rounded-full px-5 py-6 text-white">
+          <button  type="button" className="btn bg-linear-to-r from-[#4F39F6] to-[#9514FA] rounded-full px-5 py-6 text-white">
             Get Started
           </button>
         </div>
