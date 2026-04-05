@@ -16,6 +16,17 @@ I tried to keep the design clean based on the given Figma layout and made the we
 - React-Toastify (NPM Package)
 - JSON (for product data)
 
+# Key Features
+
+- Browse products in a simple card layout
+- Remove products from the cart easily
+- Cart item count updates in the navbar
+- Automatic total price calculation
+- Switch between product list and cart view
+- Checkout button empties the cart at once
+- Toast alerts for add, remove actions
+- Fully responsive design for mobile, tablet, and desktop
+
 
 # Project Structure
 
