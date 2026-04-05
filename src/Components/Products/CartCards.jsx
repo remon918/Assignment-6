@@ -13,6 +13,13 @@ const CartCards = ({
 }) => {
   console.log(price, setPrice);
   // console.log(cartProducts, "cartProducts");
+
+  const handleCheckout = () => {
+  setCartProducts([]);
+  setPrice(0);
+  toast.success("Order Placed Successfully!");
+};
+
   const handleDeleteBtn = (card) => {
     // console.log(cartProducts, "cartProducts");
 
@@ -31,7 +38,7 @@ const CartCards = ({
           <h2 className="font-bold text-xl mb-5">
             Selected Players ({cartProducts.length}/{cards.length})
           </h2>
-          <div className="h-70 w-full flex justify-center items-center text-center flex-col">
+          <div className="h-50 w-full flex justify-center items-center text-center flex-col">
             <div className="">
               <IoCartOutline />
             </div>
@@ -39,8 +46,9 @@ const CartCards = ({
           </div>
           <div className="flex justify-center">
             <button
+              
               onClick={() => setProduct("productButtonClicked")}
-              className={`btn ${product === "productButtonClicked" ? " text-white" : "text-white border-none bg-linear-to-r from-[#4F39F6] to-[#9514FA]"} w-[60%] mx-auto rounded-full  text-sm font-medium mb-10`}
+              className={`btn ${product === "productButtonClicked" ? " text-white" : "text-white border-none bg-linear-to-r from-[#4F39F6] to-[#9514FA]"} w-[40%] mx-auto rounded-full  text-sm font-medium mb-10`}
             >
               Go To Products Section
             </button>
@@ -58,8 +66,8 @@ const CartCards = ({
                   <div className="flex items-center gap-5">
                     <img className="h-6" src={card.image_url} />
                     <div>
-                      <h3>{card.title}</h3>
-                      <p>{card.price}</p>
+                      <h3 className="font-medium">{card.title}</h3>
+                      <p className="text-gray-500">{card.price}</p>
                     </div>
                   </div>
                   <button
@@ -74,13 +82,12 @@ const CartCards = ({
           })}
           <div className="">
             <div className="flex justify-between">
-              <p>total</p>
-              <button className="mb-3"> {price} $</button>
+              <p className="text-gray-500">total</p>
+              <button className="mb-3 font-bold text-xl"> {price} $</button>
             </div>
             <button
-              type="button"
-              onClick={() => setProduct("productButtonClicked")}
-              className={`btn ${product === "productButtonClicked" ? " text-white" : "text-white border-none bg-linear-to-r from-[#4F39F6] to-[#9514FA]"} w-full rounded-full  text-sm font-medium`}
+              onClick={handleCheckout}
+              className="btn text-white border-none bg-linear-to-r from-[#4F39F6] to-[#9514FA] w-full rounded-full  text-sm font-medium"
             >
               Proceed To Checkout
             </button>

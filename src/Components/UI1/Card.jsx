@@ -64,7 +64,7 @@ const Card = ({ card, cartProducts, setCartProducts, price, setPrice }) => {
           onClick={handleBtn}
           className={` ${isAdded === false ? "bg-purple-700 hover:bg-purple-600" : "bg-green-700 hover:bg-green-600"}  text-white text-sm font-semibold py-3 rounded-xl duration-300 w-full`}
         >
-          {isAdded ? "Added To Cart" : "Buy Now"}
+          {isAdded ? " ✓ Added To Cart" : "Buy Now"}
         </button>
       </div>
     </div>
