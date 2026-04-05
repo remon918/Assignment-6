@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import "./App.css";
 import Banner from "./Components/Banner/Banner";
 import Cards from "./Components/Products/Products";
@@ -17,15 +17,19 @@ const fetchCard = async () => {
   return res.json();
 };
 
+
+
 function App() {
   const cardsPromise = fetchCard();
+  const [cartProducts, setCartProducts] = useState([]);
+  
   return (
     <>
-      <Navbar />
+      <Navbar cartProducts={cartProducts} />
       <Banner />
       <Count />
       <Suspense fallback={<span className="loading loading-ring loading-xl"></span>} >
-        <Products cardsPromise={cardsPromise} />
+        <Products cardsPromise={cardsPromise} cartProducts={cartProducts} setCartProducts={setCartProducts}/>
       </Suspense>
       <GetStarted />
       <TransparentPricing />

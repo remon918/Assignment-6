@@ -1,14 +1,14 @@
 import React from "react";
 import { IoCartOutline } from "react-icons/io5";
 
-const CartCards = ({ cards, cartProducts, setCartProducts }) => {
-    // console.log(cartProducts, "cartProducts");
+const CartCards = ({ cards, cartProducts, setCartProducts, product, setProduct }) => {
+  // console.log(cartProducts, "cartProducts");
   const handleDeleteBtn = (card) => {
-    console.log(cartProducts, 'cartProducts');
+    // console.log(cartProducts, "cartProducts");
     const filteredCards = cartProducts.filter(
-      (addedCard) => addedCard.title != card.title
+      (addedCard) => addedCard.title != card.title,
     );
-    console.log(filteredCards, "filteredCards");
+    // console.log(filteredCards, "filteredCards");
     setCartProducts(filteredCards);
   };
   return (
@@ -54,11 +54,12 @@ const CartCards = ({ cards, cartProducts, setCartProducts }) => {
           <div className="">
             <div className="flex justify-between">
               <p>total</p>
-              <button
-               
-               className="mb-3">$</button>
+              <button className="mb-3">$</button>
             </div>
-            <button className="btn btn-primary w-full">
+            <button
+              onClick={() => setProduct("productButtonClicked")}
+              className={`btn ${product === "productButtonClicked" ? " text-white" : "text-white border-none bg-linear-to-r from-[#4F39F6] to-[#9514FA]"} w-full rounded-full  text-sm font-medium`}
+            >
               Proceed To Checkout
             </button>
           </div>
